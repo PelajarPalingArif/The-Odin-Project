@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <h1>Etch A Sketch</h1>
+    <button onclick="changeTiles()">Edit Tiles</button>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+        var container = document.querySelector(".container");
+
+        for (let i = 1; i <= 16 * 16; i++) {
+            
+                
+                let squareDivs = document.createElement("div");
+                squareDivs.classList.add("box");
+                container.appendChild(squareDivs);   
+            
+            
+        }
+        
+        let squareDivs = document.querySelectorAll(".box");
+        squareDivs.forEach(element => {
+            element.addEventListener("mouseover",() => {
+                element.style["background-color"] = "red";
+            });
+            
+        });
+
+        function changeTiles() {
+            let rowTiles = prompt("Enter the Number of Tiles in A Row (<100)");
+            rowTiles = parseInt(rowTiles);
+            if(rowTiles > 99 || rowTiles < 0)rowTiles = 100;
+            
+            squareDivs.forEach(element => {
+                element.remove();
+            });
+            var i = 0;
+
+            for (i = 0; i < rowTiles * rowTiles; i++) {
+                let squareDivs1 = document.createElement("div");
+                
+                squareDivs1.classList.add("box");
+                
+                squareDivs1.style["width"] = 100.0 / rowTiles + "%";
+                squareDivs1.style["height"] = 100.0 / rowTiles + "%";
+                squareDivs1.onmouseover = () => {
+                    squareDivs1.style["background-color"] = "red";
+                }
+                container.appendChild(squareDivs1);   
+            }
+            
+        }
+    </script>
+</body>
+</html>
